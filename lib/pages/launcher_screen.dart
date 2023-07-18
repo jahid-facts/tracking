@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:tracking/utils/all_files.dart';
 
 
@@ -13,6 +15,16 @@ class LauncherScreen extends StatefulWidget {
 
 class _LauncherScreenState extends State<LauncherScreen> {
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    Timer(const Duration(seconds: 5), (){
+      Navigator.of(context).pushNamed(LoginScreen.route);
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {

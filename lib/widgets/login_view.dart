@@ -1,11 +1,7 @@
 import 'package:tracking/utils/all_files.dart';
-import 'package:tracking/utils/dimension.dart';
-import 'package:tracking/utils/image_utils.dart';
 
-class LoginScreen extends StatelessWidget {
-  static const route = '/login';
-
-  const LoginScreen({
+class LoginView extends StatelessWidget {
+  const LoginView({
     super.key,
   });
 
@@ -18,7 +14,7 @@ class LoginScreen extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
             fit: BoxFit.fitWidth,
-            image: AssetImage(ImagesUtils.loginImages),
+            image: AssetImage("assets/bg_login.png"),
             alignment: Alignment.bottomLeft),
       ),
       child: Padding(
@@ -28,31 +24,34 @@ class LoginScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             spaceV(size.height * 0.2),
-            Center(child: Image.asset(ImagesUtils.logoImages)),
+            Center(child: Image.asset('assets/logo.png')),
             spaceV(size.height * 0.02),
             const Text(
               "Log In",
-              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold
+              ),
             ),
             spaceV(size.height * 0.02),
-            const Text("Your Email :", style: TextStyle(fontSize: Dimension.fontSizeExtraMedium12)),
+            const Text("Your Email :"),
             spaceV(10.0),
-            // const TextField(
-            //   decoration: InputDecoration(
-            //     prefixIcon: Icon(Icons.email_sharp),
-            //     hintText: 'example@gmail.com',
-            //   ),
-            // ),
+            const TextField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email_sharp),
+                hintText: 'example@gmail.com',
+              ),
+            ),
             spaceV(size.height * 0.02),
             const Text("Your Password :"),
             spaceV(10.0),
-            // const TextField(
-            //   decoration: InputDecoration(
-            //     prefixIcon: Icon(Icons.lock_sharp),
-            //     hintText: '........',
-            //   ),
-            //   obscureText: true,
-            // ),
+            const TextField(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.lock_sharp),
+                hintText: '........',
+              ),
+              obscureText: true,
+            ),
             spaceV(size.height * 0.02 + 10.0),
             ElevatedButton(
               onPressed: () {},

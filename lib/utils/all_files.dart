@@ -7,3 +7,5 @@ export 'package:tracking/utils/helper.dart';
 export 'package:tracking/utils/routing.dart';
 export 'package:tracking/pages/login_screen.dart';
 export 'package:tracking/pages/singup_screen.dart';
+export 'package:tracking/utils/vertical_space.dart';
+export 'package:tracking/widgets/drawer.dart';
