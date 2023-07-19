@@ -1,4 +1,5 @@
-import 'package:tracking/utils/all_files.dart';
+import "package:tracking/utils/importer.dart";
+
 
 
 class UserCard extends StatelessWidget {
@@ -59,7 +60,7 @@ class UserCard extends StatelessWidget {
                     fontSize: 18.0,
                   ),
                 ),
-                spaceV(10.0),
+                verticalSpace(),
                 Text(address),
                 Text("Code: $userCode"),
               ],
@@ -87,7 +88,7 @@ class UserCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                spaceV(10.0),
+                verticalSpace(),
                 Container(
                   width: 75.0,
                   height: 25.0,

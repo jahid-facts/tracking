@@ -1,4 +1,4 @@
-import 'package:tracking/utils/all_files.dart';
+import "package:tracking/utils/importer.dart";
 
 
 class AccountView extends StatelessWidget {
@@ -14,7 +14,7 @@ class AccountView extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              spaceV(16.0),
+              verticalSpace(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -28,8 +28,8 @@ class AccountView extends StatelessWidget {
                   ),
                 ],
               ),
-              spaceV(30.0),
-               Row(
+              verticalSpace(),
+               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -43,7 +43,7 @@ class AccountView extends StatelessWidget {
                   ),
                 ],
               ),
-              spaceV(26.0),
+              verticalSpace(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +57,7 @@ class AccountView extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onPrimary,
                           width: 3.0),
                     ),
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       backgroundImage: AssetImage('assets/profile.png'),
                       radius: 30.0,
                     ),
@@ -72,7 +72,7 @@ class AccountView extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      spaceV(10.0),
+                      verticalSpace(),
                       const Text('Dhanmondi, Dhaka'),
                       const Text('Code : 1205'),
                       const Text('01700000000'),
@@ -81,10 +81,10 @@ class AccountView extends StatelessWidget {
                   const Text('Date : 29-09-2023'),
                 ],
               ),
-              spaceV(16.0),
+              verticalSpace(),
               const Text('Area : Dhaka'),
               const Text('Select Shop'),
-              spaceV(16.0),
+              verticalSpace(),
               Expanded(
                 child: ListView.builder(
                   itemCount: 10,
@@ -141,7 +141,7 @@ class ShopCard extends StatelessWidget {
             Transform.scale(
               scale: 1.5,
               child: Checkbox(
-                shape: CircleBorder(side: BorderSide()),
+                shape: const CircleBorder(side: BorderSide()),
                 fillColor: MaterialStateProperty.resolveWith<Color>(
                     (Set<MaterialState> states) {
                   if (states.contains(MaterialState.disabled)) {
@@ -178,7 +178,7 @@ class ShopCard extends StatelessWidget {
                   name,
                   style: const TextStyle(fontSize: 18.0, color: Colors.white),
                 ),
-                spaceV(10.0),
+                verticalSpace(),
                 Text(
                   address,
                   style: const TextStyle(color: Colors.white),
@@ -211,7 +211,7 @@ class ShopCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                spaceV(10.0),
+                verticalSpace(),
                 Container(
                   width: 75.0,
                   height: 25.0,

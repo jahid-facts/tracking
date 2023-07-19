@@ -1,8 +1,8 @@
-import 'package:tracking/utils/all_files.dart';
+import "package:tracking/utils/importer.dart";
 
-class HomeScreen extends StatelessWidget {
+class AuthScreen extends StatelessWidget {
   static const route = '/auth';
-  HomeScreen({
+  AuthScreen({
     Key? key,
   }) : super(key: key);
 

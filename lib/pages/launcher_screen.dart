@@ -1,6 +1,5 @@
-import 'dart:async';
+import "package:tracking/utils/importer.dart";
 
-import 'package:tracking/utils/all_files.dart';
 
 
 
@@ -17,11 +16,9 @@ class _LauncherScreenState extends State<LauncherScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
-    Timer(const Duration(seconds: 5), (){
-      Navigator.of(context).pushNamed(LoginScreen.route);
+    Timer(const Duration(seconds: 1), (){
+      Navigator.of(context).pushNamed(HomeScreen.route);
     });
 
   }
@@ -30,7 +27,7 @@ class _LauncherScreenState extends State<LauncherScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-       
+       child: CircularProgressIndicator(),
       ),
     );
   }

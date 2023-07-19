@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../utils/menu_items.dart';
+import "package:tracking/utils/importer.dart";
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -18,18 +16,18 @@ class DrawerWidget extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
+                  width: 80.0,
+                  height: 80.0,
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: const Color.fromARGB(
-                          255, 175, 252, 211), // Set the border color to red
-                      width: 3.0, // Set the border width to 2.0
-                    ),
+                    color: primaryColor,
                   ),
-                  child: const CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/jahid.jpg'),
+                  child: const Center(
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundImage: AssetImage(ImagesUtils.profileImages),
+                      backgroundColor: primaryColor,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 20),

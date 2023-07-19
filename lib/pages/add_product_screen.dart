@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:tracking/utils/importer.dart";
 
 class AddProductScreen extends StatelessWidget {
   static const route = '/addProduct';
