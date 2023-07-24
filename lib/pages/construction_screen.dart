@@ -6,28 +6,28 @@ class ConstructionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder(
-        bloc: BlocProvider.of<UsersBloc>(context),
-        builder: (contex, state) {
-          if (state is UsersInitialState) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is UsersLoadedState) {
-            return ListView.builder(
-              itemCount: state.users.length,
-              itemBuilder: (_,index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(state.users[index].name),
-                    subtitle: Text(state.users[index].email),
-                  ),
-                );
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('This is showing user current location'),
+            verticalSpace(),
+            BlocBuilder<UserLocationBloc, UserLocationState>(
+              builder: (context, state) {
+                if (state is UserLocationInitialState) {
+                  return const CircularProgressIndicator();
+                } else if (state is UserLocationChangedState) {
+                  return Text(
+                    'Latitude: ${state.locationData.latitude}, Longitude: ${state.locationData.longitude}',
+                  );
+                } else if (state is UserLocationErrorState) {
+                  return Text(state.error);
+                }
+                return Container();
               },
-            );
-          }else if(state is UsersErrorState){
-            return Center(child: Text(state.errorMassege),);
-          }
-          return ListView();
-        },
+            ),
+          ],
+        ),
       ),
     );
   }

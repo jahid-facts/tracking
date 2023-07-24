@@ -9,18 +9,16 @@ class Shopscreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         drawer: const DrawerWidget(),
-        body: ListView(
+        body: Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-          children: [
-            //  Top menu
-            // spaceV(size.height * 0.02),
-            verticalSpace(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(ImagesUtils.logoImages),
-                Builder(
-                  builder: (context) {
+          child: Column(
+            children: [
+              verticalSpace(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(ImagesUtils.logoImages),
+                  Builder(builder: (context) {
                     return InkWell(
                       onTap: () => Scaffold.of(context).openDrawer(),
                       child: Icon(
@@ -28,68 +26,81 @@ class Shopscreen extends StatelessWidget {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     );
-                  }
-                ),
-              ],
-            ),
-            // Search field
-            // spaceV(size.height * 0.02),
-            verticalSpace(),
-            TextField(
-              decoration: textFieldDecoration(
-                hint: 'Try to find',
-                suffixIcon: const Icon(Icons.search),
+                  }),
+                ],
               ),
-            ),
-            verticalSpace(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Shop list",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  ),
+              verticalSpace(),
+              TextField(
+                decoration: textFieldDecoration(
+                  hint: 'Try to find',
+                  suffixIcon: const Icon(Icons.search),
                 ),
-                Container(
-                  width: 100.0,
-                  height: 25.0,
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).colorScheme.primary.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(3.0),
+              ),
+              verticalSpace(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Shop list",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
                   ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Center(
-                      child: Text(
-                        "De-active",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                  Container(
+                    width: 100.0,
+                    height: 25.0,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(3.0),
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Center(
+                        child: Text(
+                          "De-active",
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            // spaceV(size.height * 0.02),
-            verticalSpace(),
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  // verticalSpace(),
-                  for (int i = 0; i <= 10; i++)
-                    const ShopCard(
-                      name: 'Adi Store',
-                      address: 'Dhanmondi, Dhaka',
-                      userCode: 23456,
-                      isActive: false,
-                    ),
                 ],
               ),
-            ),
-          ],
+              verticalSpace(),
+              BlocBuilder<ShopsBloc, ShopsState>(
+                bloc: BlocProvider.of<ShopsBloc>(context),
+                buildWhen: (previous, current) => previous != current,
+                builder: (context, state) {
+                  if (state is ShopsInitialState) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is ShopsLoadedState) {
+                    return Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.shops.length,
+                        itemBuilder: (context, index) => ShopCard(
+                          name: state.shops[index].name,
+                          address: state.shops[index].description,
+                          userCode: state.shops[index].shopCode,
+                          isActive: state.shops[index].status == '1',
+                        ),
+                      ),
+                    );
+                  // return Builder(builder: (context)=>Center());
+                  } else if (state is ShopsErrorState) {
+                    return Center(
+                      child: Text(state.errorMassege),
+                    );
+                  }
+                  return const Center();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -100,7 +111,7 @@ class Shopscreen extends StatelessWidget {
 class ShopCard extends StatelessWidget {
   final String name;
   final String address;
-  final int userCode;
+  final String userCode;
   final bool isActive;
   const ShopCard({
     super.key,
