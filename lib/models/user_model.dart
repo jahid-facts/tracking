@@ -26,6 +26,9 @@ class User extends Equatable {
       email: json['email'],
     );
   }
+  toJson(String email, String pass) {
+    return JsonEncoder((obj) => {'email': email, 'password': pass});
+  }
 
   @override
   List<Object?> get props => [

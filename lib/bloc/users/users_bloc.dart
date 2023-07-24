@@ -9,7 +9,7 @@ class UsersBloc extends Bloc<UsersEvent, UsersState> {
     on<UsersEvent>((event, emit) async {
       emit(UsersInitialState());
       try {
-        final users = await _usersRepository.getUser();
+        final users = await _usersRepository.getUsers();
         emit(UsersLoadedState(users));
       } catch (e) {
         emit(UsersErrorState(e.toString()));

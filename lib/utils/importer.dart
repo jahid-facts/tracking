@@ -14,12 +14,14 @@ export 'package:location/location.dart';
 export 'package:tracking/repo/users_repo.dart';
 export 'package:tracking/repo/shops_repo.dart';
 export 'package:tracking/repo/cordinate_repo.dart';
+export 'package:tracking/repo/user_repo.dart';
 
 // Bloc
 export 'package:tracking/bloc/users/users_bloc.dart';
 export 'package:tracking/bloc/shops/shops_bloc.dart';
 export 'package:tracking/bloc/cordinate/cordinate_bloc.dart';
 export 'package:tracking/bloc/user_location/user_location_bloc.dart';
+export 'package:tracking/bloc/user/user_bloc.dart';
 
 // Models
 export 'package:tracking/models/user_model.dart';
@@ -40,6 +42,7 @@ export 'package:tracking/pages/construction_screen.dart';
 
 // Widgets
 export 'package:tracking/widgets/drawer.dart';
+export 'package:tracking/widgets/alert_widget.dart';
 export 'package:tracking/widgets/theme.dart';
 export 'package:tracking/widgets/menu_items.dart';
 

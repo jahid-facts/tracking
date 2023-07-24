@@ -15,20 +15,30 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<UsersRepository>(create: (context) => UsersRepository()),
         RepositoryProvider<ShopsRepository>(create: (context) => ShopsRepository()),
         RepositoryProvider<CordinateRepository>(create: (context) => CordinateRepository()),
+        RepositoryProvider<UserRepository>(create: (context) => UserRepository()),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => UsersBloc(RepositoryProvider.of<UsersRepository>(context))..add(LoadUsersEvent()),
+            create: (context) =>
+                UsersBloc(RepositoryProvider.of<UsersRepository>(context))
+                  ..add(LoadUsersEvent()),
           ),
           BlocProvider(
-            create: (context) => ShopsBloc(RepositoryProvider.of<ShopsRepository>(context))..add(LoadShopsEvent()),
+            create: (context) =>
+                ShopsBloc(RepositoryProvider.of<ShopsRepository>(context))
+                  ..add(LoadShopsEvent()),
           ),
           BlocProvider(
-            create: (context) => CordinateBloc(RepositoryProvider.of<CordinateRepository>(context)),
+            create: (context) => CordinateBloc(
+                RepositoryProvider.of<CordinateRepository>(context)),
           ),
           BlocProvider(
             create: (context) => UserLocationBloc()..add(FetchLocation()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                UserBloc(RepositoryProvider.of<UserRepository>(context)),
           ),
         ],
         child: MaterialApp(

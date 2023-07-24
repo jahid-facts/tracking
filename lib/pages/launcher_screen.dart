@@ -1,37 +1,33 @@
 import "package:tracking/utils/importer.dart";
 
-
-
-
-class LauncherScreen extends StatefulWidget {
-
-  static const route = '/launch';
-  const LauncherScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LauncherScreen> createState() => _LauncherScreenState();
-}
-
-class _LauncherScreenState extends State<LauncherScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-    Timer(const Duration(seconds: 1), (){
-      Navigator.of(context).pushNamed(HomeScreen.route);
-    });
-
-  }
+class LauncherScreen extends StatelessWidget {
+  static const String route = '/launch';
+  const LauncherScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-       child: CircularProgressIndicator(),
-      ),
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, state) {
+        if (state is UserInitialState) {
+          return const LoginScreen();
+        } else if (state is UserLoadedState) {
+          return const HomeScreen();
+        } else if (state is UserErrorState) {
+          return AlertDialogWidget(
+            title: 'Login error',
+            massege: 'Wrong credentials. Please enter valid credentials.',
+            onPressed: () {
+              BlocProvider.of<UserBloc>(context).add(ResetUserEvent());
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  LauncherScreen.route, (route) => false);
+            },
+          );
+        } else {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+      },
     );
   }
 }
-
-
-

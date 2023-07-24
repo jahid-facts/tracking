@@ -1,18 +1,20 @@
 import "package:tracking/utils/importer.dart";
 
-
-
 class LoginScreen extends StatefulWidget {
   static const route = '/login';
+  final bool hasOccurredError=false;
   const LoginScreen({
     super.key,
   });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
+
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late TextEditingController _emailController;
+  late TextEditingController _passController;
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passFocusNode = FocusNode();
   final double height = getScreenHeight();
@@ -22,6 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+    _emailController = TextEditingController();
+    _passController = TextEditingController();
     _emailFocusNode.addListener(() {
       setState(() {
         isEmailFocused = _emailFocusNode.hasFocus;
@@ -36,9 +40,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
+    _emailController.dispose();
+    _passController.dispose();
     _emailFocusNode.dispose();
     _passFocusNode.dispose();
     super.dispose();
+  }
+
+  void hide() {
+    dispose();
   }
 
   @override
@@ -73,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               // verticalSpace(),
               TextField(
+                controller: _emailController,
                 focusNode: _emailFocusNode,
                 decoration: textFieldDecoration(
                   prefixIcon: const Icon(Icons.email_sharp),
@@ -87,6 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               // verticalSpace(),
               TextField(
+                controller: _passController,
                 focusNode: _passFocusNode,
                 decoration: textFieldDecoration(
                   prefixIcon: const Icon(Icons.lock_sharp),
@@ -97,7 +109,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               verticalSpace(),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<UserBloc>(context).add(FetchUserEvent(
+                    email: _emailController.text,
+                    password: _passController.text,
+                  ));
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateColor.resolveWith(
                       (states) => Theme.of(context).colorScheme.primary),
@@ -108,13 +125,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       (states) => Theme.of(context).colorScheme.primary),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.symmetric(vertical: 12.0),
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(vertical: 12.0),
                   child: Center(
                     child: Text(
                       "Login",
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: whitePrimaryColor
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(color: whitePrimaryColor),
                     ),
                   ),
                 ),
