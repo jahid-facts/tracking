@@ -12,6 +12,7 @@ class ConstructionPage extends StatelessWidget {
           children: [
             const Text('This is showing user current location'),
             verticalSpace(),
+            // BlocConsumer(builder: builder, listener: listener),
             BlocBuilder<UserLocationBloc, UserLocationState>(
               builder: (context, state) {
                 if (state is UserLocationInitialState) {
