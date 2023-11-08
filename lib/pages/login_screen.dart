@@ -2,14 +2,13 @@ import "package:tracking/utils/importer.dart";
 
 class LoginScreen extends StatefulWidget {
   static const route = '/login';
-  final bool hasOccurredError=false;
+  final bool hasOccurredError = false;
   const LoginScreen({
     super.key,
   });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
-
 }
 
 class _LoginScreenState extends State<LoginScreen> {

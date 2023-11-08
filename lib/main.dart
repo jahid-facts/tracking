@@ -12,10 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<UsersRepository>(create: (context) => UsersRepository()),
-        RepositoryProvider<ShopsRepository>(create: (context) => ShopsRepository()),
-        RepositoryProvider<CordinateRepository>(create: (context) => CordinateRepository()),
-        RepositoryProvider<UserRepository>(create: (context) => UserRepository()),
+        RepositoryProvider<UsersRepository>(
+            create: (context) => UsersRepository()),
+        RepositoryProvider<ShopsRepository>(
+            create: (context) => ShopsRepository()),
+        RepositoryProvider<UserLocationRepository>(
+            create: (context) => UserLocationRepository()),
+        RepositoryProvider<UserRepository>(
+            create: (context) => UserRepository()),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => CordinateBloc(
-                RepositoryProvider.of<CordinateRepository>(context)),
+                RepositoryProvider.of<UserLocationRepository>(context)),
           ),
           BlocProvider(
             create: (context) => UserLocationBloc()..add(FetchLocation()),

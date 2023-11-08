@@ -1,22 +1,23 @@
 import "package:tracking/utils/importer.dart";
 
-
 const authRoute = '/auth';
 const launcherRoute = '/launch';
 const homeRoute = '/home';
 const addProductRoute = '/addProduct';
 const loginRoute = '/login';
 const singUpScreenRoute = '/sing_up';
-const dashbordScreenRoute='/dashbord';
-const shopScreenRoute='/shop';
+const dashbordScreenRoute = '/dashbord';
+const shopScreenRoute = '/shop';
+const shopsScreenRoute = '/shops';
 
 Map<String, WidgetBuilder> allRouts = {
   launcherRoute: (context) => const LauncherScreen(),
   homeRoute: (context) => const HomeScreen(),
   authRoute: (context) => AuthScreen(),
   addProductRoute: (context) => const AddProductScreen(),
-  loginRoute: (context) =>  const LoginScreen(),
+  loginRoute: (context) => const LoginScreen(),
   singUpScreenRoute: (context) => SingUpScreen(),
   dashbordScreenRoute: (context) => DashbordScreen(),
   shopScreenRoute: (context) => const Shopscreen(),
+  shopsScreenRoute: (context) => const Shopsscreen(),
 };

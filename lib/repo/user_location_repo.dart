@@ -1,6 +1,6 @@
 import 'package:tracking/utils/importer.dart';
 
-class CordinateRepository {
+class UserLocationRepository {
   // send current location
   Future<String> sendCordinate(User user, Cordinate cord) async {
     String url = 'https://www.test.minimaxhealthcare.org/api/users/${user.id}';

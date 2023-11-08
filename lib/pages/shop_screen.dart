@@ -85,12 +85,12 @@ class Shopscreen extends StatelessWidget {
                         itemBuilder: (context, index) => ShopCard(
                           name: state.shops[index].name,
                           address: state.shops[index].description,
-                          userCode: state.shops[index].shopCode,
+                          userCode: state.shops[index].address,
                           isActive: state.shops[index].status == '1',
                         ),
                       ),
                     );
-                  // return Builder(builder: (context)=>Center());
+                    // return Builder(builder: (context)=>Center());
                   } else if (state is ShopsErrorState) {
                     return Center(
                       child: Text(state.errorMassege),
@@ -107,120 +107,120 @@ class Shopscreen extends StatelessWidget {
   }
 }
 
-// user Card
-class ShopCard extends StatelessWidget {
-  final String name;
-  final String address;
-  final String userCode;
-  final bool isActive;
-  const ShopCard({
-    super.key,
-    required this.name,
-    required this.address,
-    required this.userCode,
-    required this.isActive,
-  });
+// // user Card
+// class ShopCard extends StatelessWidget {
+//   final String name;
+//   final String address;
+//   final String userCode;
+//   final bool isActive;
+//   const ShopCard({
+//     super.key,
+//     required this.name,
+//     required this.address,
+//     required this.userCode,
+//     required this.isActive,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: whitePrimaryColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(color: Theme.of(context).colorScheme.primary),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(right: 10.0),
-              height: 32.0 * 2,
-              width: 32.0 * 2,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(7.5),
-              ),
-              // color: Theme.of(context).colorScheme.primary,
-              child: Center(
-                child: Icon(
-                  Icons.shop_2_rounded,
-                  size: 28.0,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(name, style: Theme.of(context).textTheme.bodyLarge),
-                  verticalSpace(height: 0.01),
-                  Text(address),
-                  Text("Code: $userCode"),
-                ],
-              ),
-            ),
-            Column(
-              children: [
-                Container(
-                  width: 75.0,
-                  height: 25.0,
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).colorScheme.primary.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(3.0),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Center(
-                      child: Text(
-                        "view",
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                // spaceV(10.0),
-                verticalSpace(height: 0.012),
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       color: whitePrimaryColor,
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(10.0),
+//         side: BorderSide(color: Theme.of(context).colorScheme.primary),
+//       ),
+//       child: Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: Row(
+//           children: [
+//             Container(
+//               margin: const EdgeInsets.only(right: 10.0),
+//               height: 32.0 * 2,
+//               width: 32.0 * 2,
+//               decoration: BoxDecoration(
+//                 color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+//                 borderRadius: BorderRadius.circular(7.5),
+//               ),
+//               // color: Theme.of(context).colorScheme.primary,
+//               child: Center(
+//                 child: Icon(
+//                   Icons.shop_2_rounded,
+//                   size: 28.0,
+//                   color: Theme.of(context).colorScheme.primary,
+//                 ),
+//               ),
+//             ),
+//             Expanded(
+//               flex: 1,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(name, style: Theme.of(context).textTheme.bodyLarge),
+//                   verticalSpace(height: 0.01),
+//                   Text(address),
+//                   Text("Code: $userCode"),
+//                 ],
+//               ),
+//             ),
+//             Column(
+//               children: [
+//                 Container(
+//                   width: 75.0,
+//                   height: 25.0,
+//                   decoration: BoxDecoration(
+//                     color:
+//                         Theme.of(context).colorScheme.primary.withOpacity(0.2),
+//                     borderRadius: BorderRadius.circular(3.0),
+//                   ),
+//                   child: InkWell(
+//                     onTap: () {},
+//                     child: Center(
+//                       child: Text(
+//                         "view",
+//                         style: TextStyle(
+//                           color: Theme.of(context).colorScheme.primary,
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 // spaceV(10.0),
+//                 verticalSpace(height: 0.012),
 
-                Container(
-                  width: 75.0,
-                  height: 25.0,
-                  decoration: BoxDecoration(
-                    color: isActive
-                        ? Theme.of(context).colorScheme.primary.withOpacity(0.2)
-                        : Theme.of(context).colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(3.0),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          // horizontal: 18.0,
-                          // vertical: 4.0
-                          ),
-                      child: Center(
-                        child: Text(
-                          isActive ? "Active" : "De-active",
-                          style: TextStyle(
-                            color: isActive
-                                ? Theme.of(context).colorScheme.primary
-                                : Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//                 Container(
+//                   width: 75.0,
+//                   height: 25.0,
+//                   decoration: BoxDecoration(
+//                     color: isActive
+//                         ? Theme.of(context).colorScheme.primary.withOpacity(0.2)
+//                         : Theme.of(context).colorScheme.secondary,
+//                     borderRadius: BorderRadius.circular(3.0),
+//                   ),
+//                   child: InkWell(
+//                     onTap: () {},
+//                     child: Padding(
+//                       padding: const EdgeInsets.symmetric(
+//                           // horizontal: 18.0,
+//                           // vertical: 4.0
+//                           ),
+//                       child: Center(
+//                         child: Text(
+//                           isActive ? "Active" : "De-active",
+//                           style: TextStyle(
+//                             color: isActive
+//                                 ? Theme.of(context).colorScheme.primary
+//                                 : Colors.white,
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

@@ -4,30 +4,28 @@ class User extends Equatable {
   final int id;
   final String name;
   final String number;
-  final bool? isEmailVerified;
   final String email;
-  final String status;
+  final String deviceID;
   const User({
-    required this.number,
-    required this.isEmailVerified,
-    required this.status,
     required this.id,
     required this.name,
+    required this.number,
     required this.email,
+    required this.deviceID,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      number: json['number'],
-      isEmailVerified: json['isEmailVerified'],
-      status: json['status'],
       id: json['id'],
       name: json['name'],
+      number: json['number'],
       email: json['email'],
+      deviceID: json['status'],
     );
   }
-  toJson(String email, String pass) {
-    return JsonEncoder((obj) => {'email': email, 'password': pass});
+  toJson(String email, String pass, String deviceID) {
+    return JsonEncoder(
+        (obj) => {'email': email, 'password': pass, 'deviceID': deviceID});
   }
 
   @override
@@ -36,14 +34,6 @@ class User extends Equatable {
         name,
         number,
         email,
-        status,
-        isEmailVerified,
+        deviceID,
       ];
 }
-
-// dynamic x = {
-//   "user_code": "230002",
-//   "status": "1",
-//   "created_at": "2023-06-21T11:26:07.000000Z",
-//   "updated_at": "2023-06-21T11:26:07.000000Z",
-// };

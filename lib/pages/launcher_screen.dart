@@ -11,7 +11,7 @@ class LauncherScreen extends StatelessWidget {
         if (state is UserInitialState) {
           return const LoginScreen();
         } else if (state is UserLoadedState) {
-          return const HomeScreen();
+          return DashbordScreen();
         } else if (state is UserErrorState) {
           return AlertDialogWidget(
             title: 'Login error',

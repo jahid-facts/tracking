@@ -3,45 +3,46 @@ import 'package:tracking/utils/importer.dart';
 class Shop extends Equatable {
   final int id;
   final String name;
-  final String description;
   final String? number;
+  final String status;
+  final String address;
   final double? latitude;
   final double? longitude;
-  final String status;
-  final String shopCode;
+  final String description;
 
   const Shop({
     required this.id,
     required this.name,
-    required this.description,
     required this.number,
+    required this.status,
+    required this.address,
     required this.latitude,
     required this.longitude,
-    required this.status,
-    required this.shopCode,
+    required this.description,
   });
 
   factory Shop.fromJson(Map<String, dynamic> json) {
     return Shop(
       id: json['id'],
       name: json['name'],
-      description: json['description'],
       number: json['number'],
+      status: json['status'],
+      // address: json['address'],
+      address: 'Unknown',
       latitude: json['latitude'],
       longitude: json['longitude'],
-      status: json['status'],
-      shopCode: json['shop_code'],
+      description: json['description'],
     );
   }
   @override
   List<Object?> get props => [
         id,
         name,
-        description,
         number,
+        status,
+        address,
         latitude,
         longitude,
-        status,
-        shopCode,
+        description,
       ];
 }

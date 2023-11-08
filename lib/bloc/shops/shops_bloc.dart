@@ -8,11 +8,13 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
   ShopsBloc(this._shopsRepository) : super(ShopsInitialState()) {
     on<ShopsEvent>((event, emit) async {
       emit(ShopsInitialState());
-      try {
-        final shops = await _shopsRepository.getShops();
-        emit(ShopsLoadedState(shops));
-      } catch (e) {
-        emit(ShopsErrorState(e.toString()));
+      if (event is LoadShopsEvent) {
+        try {
+          final shops = await _shopsRepository.getShops();
+          emit(ShopsLoadedState(shops));
+        } catch (e) {
+          emit(ShopsErrorState(e.toString()));
+        }
       }
     });
   }

@@ -13,7 +13,7 @@ export 'package:location/location.dart';
 // Repositorys
 export 'package:tracking/repo/users_repo.dart';
 export 'package:tracking/repo/shops_repo.dart';
-export 'package:tracking/repo/cordinate_repo.dart';
+export 'package:tracking/repo/user_location_repo.dart';
 export 'package:tracking/repo/user_repo.dart';
 
 // Bloc
@@ -37,6 +37,8 @@ export 'package:tracking/pages/home_screen.dart';
 export 'package:tracking/pages/singup_screen.dart';
 export 'package:tracking/pages/dashbord_screen.dart';
 export 'package:tracking/pages/shop_screen.dart';
+export 'package:tracking/pages/shops_screen.dart';
+// export 'package:tracking/pages/shops_screen.dart';
 export 'package:tracking/pages/users_screen.dart';
 export 'package:tracking/pages/construction_screen.dart';
 
@@ -53,3 +55,4 @@ export 'space.dart';
 export 'custom_style.dart';
 export 'image_utils.dart';
 export 'constants.dart';
+export 'utils_func.dart';
