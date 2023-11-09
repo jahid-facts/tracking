@@ -5,9 +5,11 @@ part 'user_location_state.dart';
 
 class UserLocationBloc extends Bloc<UserLocationEvent, UserLocationState> {
   final Location location = Location();
-  UserLocationBloc() : super(UserLocationInitialState()) {
+  final UserLocationRepository _userLocationRepository;
+  UserLocationBloc(this._userLocationRepository)
+      : super(UserLocationInitialState()) {
     on<UserLocationEvent>((event, emit) async {
-      if (event is FetchLocation) {
+      if (event is FetchUserLocation) {
         // future.whenComplete(() => emit(...));
         try {
           bool serviceEnabled;
@@ -31,16 +33,30 @@ class UserLocationBloc extends Bloc<UserLocationEvent, UserLocationState> {
           }
 
           // Get the user's current location
-          emit(
-            UserLocationChangedState(
-                locationData: await location.getLocation()),
-          );
+          LocationData locationData = await location.getLocation();
+          emit(UserLocationChangedState(locationData: locationData));
+          // Send the location to Repo
+          try {
+            await _userLocationRepository.sendCordinate(
+                event.user,
+                Cordinate(
+                  lat: locationData.latitude ?? 0,
+                  lon: locationData.longitude ?? 0,
+                ));
+            print('location updating ....');
+          } catch (error) {
+            print(error);
+          }
+
+          // continue
           location.onLocationChanged.listen(
             (LocationData locationData) {
-              add(FetchLocation());
+              add(FetchUserLocation(user: event.user));
             },
           );
         } catch (e) {
+          print(e);
+          print('Location error!');
           emit(UserLocationErrorState(error: e.toString()));
         }
       }

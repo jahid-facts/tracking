@@ -25,20 +25,16 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) =>
-                UsersBloc(RepositoryProvider.of<UsersRepository>(context))
-                  ..add(LoadUsersEvent()),
-          ),
-          BlocProvider(
-            create: (context) =>
                 ShopsBloc(RepositoryProvider.of<ShopsRepository>(context))
                   ..add(LoadShopsEvent()),
           ),
+          // BlocProvider(
+          //   create: (context) => CordinateBloc(
+          //       RepositoryProvider.of<UserLocationRepository>(context))..add(FetchLocation()),
+          // ),
           BlocProvider(
-            create: (context) => CordinateBloc(
+            create: (context) => UserLocationBloc(
                 RepositoryProvider.of<UserLocationRepository>(context)),
-          ),
-          BlocProvider(
-            create: (context) => UserLocationBloc()..add(FetchLocation()),
           ),
           BlocProvider(
             create: (context) =>

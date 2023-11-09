@@ -11,11 +11,13 @@ class LauncherScreen extends StatelessWidget {
         if (state is UserInitialState) {
           return const LoginScreen();
         } else if (state is UserLoadedState) {
+          BlocProvider.of<UserLocationBloc>(context)
+              .add(FetchUserLocation(user: state.user));
           return DashbordScreen();
         } else if (state is UserErrorState) {
           return AlertDialogWidget(
             title: 'Login error',
-            massege: 'Wrong credentials. Please enter valid credentials.',
+            massege: state.error,
             onPressed: () {
               BlocProvider.of<UserBloc>(context).add(ResetUserEvent());
               Navigator.of(context).pushNamedAndRemoveUntil(

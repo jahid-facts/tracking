@@ -14,8 +14,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _widgetOptions = [
     DashbordScreen(),
     const Shopscreen(),
-    const ConstructionPage(),
-    const UsersPage(),
   ];
 
   @override
@@ -35,14 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_bag_outlined),
             label: 'Shop',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Messages',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Account',
           ),
         ],
         currentIndex: selectedIndex,

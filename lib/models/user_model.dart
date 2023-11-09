@@ -5,13 +5,13 @@ class User extends Equatable {
   final String name;
   final String number;
   final String email;
-  final String deviceID;
+  // final String? deviceID;
   const User({
     required this.id,
     required this.name,
     required this.number,
     required this.email,
-    required this.deviceID,
+    // this.deviceID,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -20,7 +20,7 @@ class User extends Equatable {
       name: json['name'],
       number: json['number'],
       email: json['email'],
-      deviceID: json['status'],
+      // deviceID: json['status'],
     );
   }
   toJson(String email, String pass, String deviceID) {
@@ -34,6 +34,6 @@ class User extends Equatable {
         name,
         number,
         email,
-        deviceID,
+        // deviceID,
       ];
 }

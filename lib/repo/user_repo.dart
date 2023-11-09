@@ -6,13 +6,17 @@ class UserRepository {
   getUser({
     required String email,
     required String password,
-    required String deviceID,
   }) async {
-    var headers = {'Content-Type': 'application/json'};
-    var url =
+    Map deviceInfo = await getDeviceInfo();
+    Map<String, String> headers = {'Content-Type': 'application/json'};
+    Uri url =
         Uri.parse('https://www.test.minimaxhealthcare.org/api/user-login');
-    var data = {'email': email, 'password': password, 'deviceID': deviceID};
-    var response =
+    Map data = {
+      'email': email,
+      'password': password,
+      'deviceID': deviceInfo['identifierForVendor'],
+    };
+    Response response =
         await http.post(url, headers: headers, body: jsonEncode(data));
 
     if (response.statusCode == 200) {
