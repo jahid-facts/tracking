@@ -37,15 +37,15 @@ class UserLocationBloc extends Bloc<UserLocationEvent, UserLocationState> {
           emit(UserLocationChangedState(locationData: locationData));
           // Send the location to Repo
           try {
+            print('location updating ....');
             await _userLocationRepository.sendCordinate(
                 event.user,
                 Cordinate(
                   lat: locationData.latitude ?? 0,
                   lon: locationData.longitude ?? 0,
                 ));
-            print('location updating ....');
           } catch (error) {
-            print(error);
+            print('error');
           }
 
           // continue

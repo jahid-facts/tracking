@@ -1,6 +1,7 @@
 // Dart
 export 'dart:async';
 export 'dart:convert';
+export 'dart:html' show window;
 
 // Packages
 export 'package:flutter/material.dart';
@@ -9,6 +10,8 @@ export 'package:http/http.dart';
 export 'package:equatable/equatable.dart';
 export 'package:bloc/bloc.dart';
 export 'package:location/location.dart';
+export '';
+export 'package:device_info_plus/device_info_plus.dart';
 
 // Repositorys
 export 'package:tracking/repo/users_repo.dart';
@@ -17,9 +20,7 @@ export 'package:tracking/repo/user_location_repo.dart';
 export 'package:tracking/repo/user_repo.dart';
 
 // Bloc
-export 'package:tracking/bloc/users/users_bloc.dart';
 export 'package:tracking/bloc/shops/shops_bloc.dart';
-export 'package:tracking/bloc/cordinate/cordinate_bloc.dart';
 export 'package:tracking/bloc/user_location/user_location_bloc.dart';
 export 'package:tracking/bloc/user/user_bloc.dart';
 
@@ -35,7 +36,6 @@ export 'package:tracking/pages/home_screen.dart';
 export 'package:tracking/pages/dashbord_screen.dart';
 export 'package:tracking/pages/shop_screen.dart';
 export 'package:tracking/pages/shops_screen.dart';
-export 'package:tracking/pages/users_screen.dart';
 
 // Widgets
 export 'package:tracking/widgets/drawer.dart';

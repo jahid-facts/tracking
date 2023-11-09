@@ -251,8 +251,10 @@ class ShopCard extends StatelessWidget {
                           (states) => Theme.of(context).colorScheme.primary),
                     ),
                     onPressed: () {
-                      // Add your button action here
-                      print('Button pressed');
+                      // TODO: make it dynamic
+                      Cordinate cor = const Cordinate(
+                          lat: 23.742382288941503, lon: 90.38655512197339);
+                      launchWaze(cor);
                     },
                     child: const Text(
                       'view map',

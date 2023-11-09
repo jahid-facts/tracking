@@ -5,13 +5,13 @@ class User extends Equatable {
   final String name;
   final String number;
   final String email;
-  // final String? deviceID;
+  // final String deviceID;
   const User({
     required this.id,
     required this.name,
     required this.number,
     required this.email,
-    // this.deviceID,
+    // required this.deviceID,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {

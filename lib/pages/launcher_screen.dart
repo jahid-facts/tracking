@@ -10,23 +10,17 @@ class LauncherScreen extends StatelessWidget {
       builder: (context, state) {
         if (state is UserInitialState) {
           return const LoginScreen();
+        } else if (state is UserLoadingState) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
         } else if (state is UserLoadedState) {
           BlocProvider.of<UserLocationBloc>(context)
               .add(FetchUserLocation(user: state.user));
           return DashbordScreen();
-        } else if (state is UserErrorState) {
-          return AlertDialogWidget(
-            title: 'Login error',
-            massege: state.error,
-            onPressed: () {
-              BlocProvider.of<UserBloc>(context).add(ResetUserEvent());
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  LauncherScreen.route, (route) => false);
-            },
-          );
         } else {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+          return const LoginScreen(
+            hasOccurredError: true,
           );
         }
       },
