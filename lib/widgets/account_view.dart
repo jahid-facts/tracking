@@ -1,5 +1,4 @@
-import "package:tracking/utils/importer.dart";
-
+import 'package:tracking/utils/importer.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});
@@ -29,7 +28,7 @@ class AccountView extends StatelessWidget {
                 ],
               ),
               verticalSpace(),
-               const Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -184,7 +183,7 @@ class ShopCard extends StatelessWidget {
                   style: const TextStyle(color: Colors.white),
                 ),
                 Text(
-                  "Code: $userCode",
+                  'Code: $userCode',
                   style: const TextStyle(color: Colors.white),
                 ),
               ],
@@ -203,7 +202,7 @@ class ShopCard extends StatelessWidget {
                     onTap: () {},
                     child: Center(
                       child: Text(
-                        "view",
+                        'view',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -223,7 +222,7 @@ class ShopCard extends StatelessWidget {
                     onTap: () {},
                     child: Center(
                       child: Text(
-                        "View info",
+                        'View info',
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),

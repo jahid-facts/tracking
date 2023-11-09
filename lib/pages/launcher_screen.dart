@@ -1,4 +1,4 @@
-import "package:tracking/utils/importer.dart";
+import 'package:tracking/utils/importer.dart';
 
 class LauncherScreen extends StatelessWidget {
   static const String route = '/launch';

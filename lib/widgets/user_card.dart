@@ -1,6 +1,4 @@
-import "package:tracking/utils/importer.dart";
-
-
+import 'package:tracking/utils/importer.dart';
 
 class UserCard extends StatelessWidget {
   final String name;
@@ -62,7 +60,7 @@ class UserCard extends StatelessWidget {
                 ),
                 verticalSpace(),
                 Text(address),
-                Text("Code: $userCode"),
+                Text('Code: $userCode'),
               ],
             ),
             Column(
@@ -80,7 +78,7 @@ class UserCard extends StatelessWidget {
                     onTap: () {},
                     child: Center(
                       child: Text(
-                        "view",
+                        'view',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -107,7 +105,7 @@ class UserCard extends StatelessWidget {
                           ),
                       child: Center(
                         child: Text(
-                          isActive ? "Active" : "De-active",
+                          isActive ? 'Active' : 'De-active',
                           style: TextStyle(
                             color: isActive
                                 ? Theme.of(context).colorScheme.primary

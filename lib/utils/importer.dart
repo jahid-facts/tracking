@@ -1,7 +1,7 @@
 // Dart
 export 'dart:async';
 export 'dart:convert';
-export 'dart:html' show window;
+// export 'dart:html' show window;
 
 // Packages
 export 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ export '';
 export 'package:device_info_plus/device_info_plus.dart';
 
 // Repositorys
-export 'package:tracking/repo/users_repo.dart';
+// export 'package:tracking/repo/users_repo.dart';
 export 'package:tracking/repo/shops_repo.dart';
 export 'package:tracking/repo/user_location_repo.dart';
 export 'package:tracking/repo/user_repo.dart';
@@ -34,7 +34,6 @@ export 'package:tracking/pages/launcher_screen.dart';
 export 'package:tracking/pages/login_screen.dart';
 export 'package:tracking/pages/home_screen.dart';
 export 'package:tracking/pages/dashbord_screen.dart';
-export 'package:tracking/pages/shop_screen.dart';
 export 'package:tracking/pages/shops_screen.dart';
 
 // Widgets

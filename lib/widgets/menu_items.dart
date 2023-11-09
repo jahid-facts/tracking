@@ -1,9 +1,9 @@
-import "package:tracking/utils/importer.dart";
+import 'package:tracking/utils/importer.dart';
 
 class MenuIeam extends StatelessWidget {
   final String menuName;
-  
-  final IconData?  icons;
+
+  final IconData? icons;
 
   const MenuIeam({super.key, required this.menuName, this.icons});
 

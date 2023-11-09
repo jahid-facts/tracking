@@ -1,7 +1,8 @@
-import "package:tracking/utils/importer.dart";
+import 'package:tracking/utils/importer.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-double  getScreenHeight() => MediaQuery.of(navigatorKey.currentState!.context).size.height;
-double  getScreenWidth() => MediaQuery.of(navigatorKey.currentState!.context).size.width;
-
+double getScreenHeight() =>
+    MediaQuery.of(navigatorKey.currentState!.context).size.height;
+double getScreenWidth() =>
+    MediaQuery.of(navigatorKey.currentState!.context).size.width;

@@ -1,4 +1,4 @@
-import "package:tracking/utils/importer.dart";
+import 'package:tracking/utils/importer.dart';
 
 class Shopsscreen extends StatelessWidget {
   const Shopsscreen({super.key});
@@ -17,6 +17,7 @@ class Shopsscreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  // TODO: Set the logo
                   Image.asset(ImagesUtils.logoImages),
                   Builder(builder: (context) {
                     return InkWell(
@@ -41,7 +42,7 @@ class Shopsscreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Shop list",
+                    'Shop list',
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
@@ -60,7 +61,7 @@ class Shopsscreen extends StatelessWidget {
                       onTap: () {},
                       child: Center(
                         child: Text(
-                          "12-12-2023",
+                          '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}',
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
                           ),
@@ -88,12 +89,7 @@ class Shopsscreen extends StatelessWidget {
 
                             // Additional logic as needed...
                           },
-                          child: ShopCard(
-                            name: state.shops[index].name,
-                            address: state.shops[index].description,
-                            userCode: state.shops[index].address,
-                            isActive: state.shops[index].status == '1',
-                          ),
+                          child: ShopCard(shop: state.shops[index]),
                         ),
                       ),
                     );
@@ -117,16 +113,11 @@ class Shopsscreen extends StatelessWidget {
 
 // user Card
 class ShopCard extends StatelessWidget {
-  final String name;
-  final String address;
-  final String userCode;
-  final bool isActive;
+  final Shop shop;
+
   const ShopCard({
     super.key,
-    required this.name,
-    required this.address,
-    required this.userCode,
-    required this.isActive,
+    required this.shop,
   });
 
   void _openModal(BuildContext context) {
@@ -149,10 +140,10 @@ class ShopCard extends StatelessWidget {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    children: const [
+                    children: [
                       TableRow(
                         children: [
-                          TableCell(
+                          const TableCell(
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Center(
@@ -168,11 +159,11 @@ class ShopCard extends StatelessWidget {
                           ),
                           TableCell(
                             child: Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Center(
                                 child: Text(
-                                  'AKS store',
-                                  style: TextStyle(fontSize: 16.0),
+                                  shop.name,
+                                  style: const TextStyle(fontSize: 16.0),
                                 ),
                               ),
                             ),
@@ -181,7 +172,7 @@ class ShopCard extends StatelessWidget {
                       ),
                       TableRow(
                         children: [
-                          TableCell(
+                          const TableCell(
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Center(
@@ -197,11 +188,11 @@ class ShopCard extends StatelessWidget {
                           ),
                           TableCell(
                             child: Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Center(
                                 child: Text(
-                                  'Dhaka',
-                                  style: TextStyle(fontSize: 16.0),
+                                  shop.address,
+                                  style: const TextStyle(fontSize: 16.0),
                                 ),
                               ),
                             ),
@@ -210,7 +201,7 @@ class ShopCard extends StatelessWidget {
                       ),
                       TableRow(
                         children: [
-                          TableCell(
+                          const TableCell(
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Center(
@@ -226,11 +217,11 @@ class ShopCard extends StatelessWidget {
                           ),
                           TableCell(
                             child: Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Center(
                                 child: Text(
-                                  '0123425467467',
-                                  style: TextStyle(fontSize: 16.0),
+                                  shop.number ?? '01700000000',
+                                  style: const TextStyle(fontSize: 16.0),
                                 ),
                               ),
                             ),
@@ -251,9 +242,9 @@ class ShopCard extends StatelessWidget {
                           (states) => Theme.of(context).colorScheme.primary),
                     ),
                     onPressed: () {
-                      // TODO: make it dynamic
-                      Cordinate cor = const Cordinate(
-                          lat: 23.742382288941503, lon: 90.38655512197339);
+                      Cordinate cor = Cordinate(
+                          lat: shop.latitude ?? 23.742382288941503,
+                          lon: shop.longitude ?? 90.38655512197339);
                       launchWaze(cor);
                     },
                     child: const Text(
@@ -308,10 +299,10 @@ class ShopCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: Theme.of(context).textTheme.bodyLarge),
+                  Text(shop.name, style: Theme.of(context).textTheme.bodyLarge),
                   verticalSpace(height: 0.01),
-                  Text(address),
-                  Text("Code: $userCode"),
+                  Text(shop.address),
+                  Text('Code: ${shop.id}'),
                 ],
               ),
             ),
@@ -331,7 +322,7 @@ class ShopCard extends StatelessWidget {
                     },
                     child: Center(
                       child: Text(
-                        "view info",
+                        'view info',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -341,36 +332,6 @@ class ShopCard extends StatelessWidget {
                 ),
                 // spaceV(10.0),
                 verticalSpace(height: 0.012),
-
-                // Container(
-                //   width: 75.0,
-                //   height: 25.0,
-                //   decoration: BoxDecoration(
-                //     color: isActive
-                //         ? Theme.of(context).colorScheme.primary.withOpacity(0.2)
-                //         : Theme.of(context).colorScheme.secondary,
-                //     borderRadius: BorderRadius.circular(3.0),
-                //   ),
-                //   child: InkWell(
-                //     onTap: () {},
-                //     child: Padding(
-                //       padding: const EdgeInsets.symmetric(
-                //           // horizontal: 18.0,
-                //           // vertical: 4.0
-                //           ),
-                //       child: Center(
-                //         child: Text(
-                //           isActive ? "Active" : "De-active",
-                //           style: TextStyle(
-                //             color: isActive
-                //                 ? Theme.of(context).colorScheme.primary
-                //                 : Colors.white,
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ],

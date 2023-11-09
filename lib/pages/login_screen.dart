@@ -1,4 +1,4 @@
-import "package:tracking/utils/importer.dart";
+import 'package:tracking/utils/importer.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/login';
@@ -85,12 +85,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(child: Image.asset(ImagesUtils.logoImages)),
               verticalSpace(),
               Text(
-                "Log In",
+                'Log In',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               verticalSpace(),
               Text(
-                "Email :",
+                'Email :',
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               verticalSpace(height: 0.015),
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               verticalSpace(),
               Text(
-                "Password :",
+                'Password :',
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               verticalSpace(height: 0.015),
@@ -194,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             vertical: 12.0),
                         child: Center(
                           child: Text(
-                            "Login",
+                            'Login',
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge

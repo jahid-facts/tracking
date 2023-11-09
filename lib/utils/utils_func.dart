@@ -14,8 +14,8 @@ void launchWaze(Cordinate cor) async {
       await launchUrl(url2);
     }
   } catch (e) {
-    window.open('https://www.waze.com/ul?ll=${cor.lat},${cor.lon}&navigate=yes',
-        'Waze');
+    // window.open('https://www.waze.com/ul?ll=${cor.lat},${cor.lon}&navigate=yes',
+    //     'Waze');
   }
 }
 

@@ -1,4 +1,4 @@
-import "package:tracking/utils/importer.dart";
+import 'package:tracking/utils/importer.dart';
 
 class HomeScreen extends StatefulWidget {
   static const route = '/home';
@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _widgetOptions = [
     DashbordScreen(),
-    const Shopscreen(),
+    // const Shopscreen(),
   ];
 
   @override
