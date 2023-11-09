@@ -30,10 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_outlined),
-            label: 'Shop',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.shopping_bag_outlined),
+          //   label: 'Shop',
+          // ),
         ],
         currentIndex: selectedIndex,
         onTap: (int index) => setState(() {
