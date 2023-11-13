@@ -7,6 +7,7 @@ class LauncherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
+      buildWhen: (previous, current) => previous != current,
       builder: (context, state) {
         if (state is UserInitialState) {
           return const LoginScreen();

@@ -1,6 +1,14 @@
-import 'package:url_launcher/url_launcher.dart';
-
 import 'importer.dart';
+
+String getDate(int index) {
+  DateTime date = DateTime.now();
+  DateTime resultDate = date.add(Duration(days: index));
+
+  String formattedDate =
+      '${resultDate.year}-${resultDate.month}-${resultDate.day}';
+
+  return formattedDate;
+}
 
 void launchWaze(Cordinate cor) async {
   final Uri url1 = Uri.parse('waze://?ll=${cor.lat},${cor.lon}&navigate=yes');

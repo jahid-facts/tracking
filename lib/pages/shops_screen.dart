@@ -1,7 +1,8 @@
 import 'package:tracking/utils/importer.dart';
 
 class Shopsscreen extends StatelessWidget {
-  const Shopsscreen({super.key});
+  final String date;
+  const Shopsscreen({super.key, required this.date});
   static const route = '/shops';
 
   @override
@@ -61,7 +62,7 @@ class Shopsscreen extends StatelessWidget {
                       onTap: () {},
                       child: Center(
                         child: Text(
-                          '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}',
+                          date,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
                           ),

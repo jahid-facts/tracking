@@ -10,7 +10,7 @@ export 'package:http/http.dart';
 export 'package:equatable/equatable.dart';
 export 'package:bloc/bloc.dart';
 export 'package:location/location.dart';
-export '';
+export 'package:url_launcher/url_launcher.dart';
 export 'package:device_info_plus/device_info_plus.dart';
 
 // Repositorys
