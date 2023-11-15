@@ -43,54 +43,70 @@ class DrawerWidget extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(
-              Icons.dashboard,
+              Icons.exit_to_app,
               color: Color(0xFF4cb97e),
             ),
-            title: const Text('Dashboard',
+            title: const Text('Logout!',
                 style: TextStyle(
                   color: Color(0xFF4cb97e),
                   fontSize: 14,
                 )),
             tileColor: const Color.fromARGB(255, 223, 255, 238),
             onTap: () {
+              BlocProvider.of<UserBloc>(context).add(ResetUserEvent());
               // Handle item 1 click
             },
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          const MenuIeam(
-            menuName: 'Employees List',
-            icons: Icons.man_2,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const MenuIeam(
-            menuName: 'Employees Task List',
-            icons: Icons.task,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const MenuIeam(
-            menuName: 'Employees Daily Task',
-            icons: Icons.list,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const MenuIeam(
-            menuName: 'Today Active Employees',
-            icons: Icons.task_alt_rounded,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const MenuIeam(
-            menuName: 'Employees Map',
-            icons: Icons.map,
-          ),
+          // ListTile(
+          //   leading: const Icon(
+          //     Icons.dashboard,
+          //     color: Color(0xFF4cb97e),
+          //   ),
+          //   title: const Text('Dashboard',
+          //       style: TextStyle(
+          //         color: Color(0xFF4cb97e),
+          //         fontSize: 14,
+          //       )),
+          //   tileColor: const Color.fromARGB(255, 223, 255, 238),
+          //   onTap: () {
+          //     // Handle item 1 click
+          //   },
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // const MenuIeam(
+          //   menuName: 'Employees List',
+          //   icons: Icons.man_2,
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // const MenuIeam(
+          //   menuName: 'Employees Task List',
+          //   icons: Icons.task,
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // const MenuIeam(
+          //   menuName: 'Employees Daily Task',
+          //   icons: Icons.list,
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // const MenuIeam(
+          //   menuName: 'Today Active Employees',
+          //   icons: Icons.task_alt_rounded,
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // const MenuIeam(
+          //   menuName: 'Employees Map',
+          //   icons: Icons.map,
+          // ),
         ],
       ),
     );
