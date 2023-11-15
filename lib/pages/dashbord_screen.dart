@@ -1,7 +1,8 @@
 import 'package:tracking/utils/importer.dart';
 
 class DashbordScreen extends StatelessWidget {
-  DashbordScreen({Key? key}) : super(key: key);
+  final User user;
+  DashbordScreen({Key? key, required this.user}) : super(key: key);
   static const route = '/dashbord';
   final double width = getScreenWidth();
 
@@ -40,6 +41,10 @@ class DashbordScreen extends StatelessWidget {
                   return Card(
                     child: ListTile(
                       onTap: () {
+                        BlocProvider.of<ShopsBloc>(context).add(LoadShopsEvent(
+                          userId: user.id,
+                          date: getDate(index),
+                        ));
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Shopsscreen(
                                   date: getDate(index),

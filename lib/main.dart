@@ -30,8 +30,7 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) =>
-                ShopsBloc(RepositoryProvider.of<ShopsRepository>(context))
-                  ..add(LoadShopsEvent()),
+                ShopsBloc(RepositoryProvider.of<ShopsRepository>(context)),
           ),
         ],
         child: MaterialApp(

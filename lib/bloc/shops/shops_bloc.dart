@@ -10,7 +10,8 @@ class ShopsBloc extends Bloc<ShopsEvent, ShopsState> {
       emit(ShopsInitialState());
       if (event is LoadShopsEvent) {
         try {
-          final shops = await _shopsRepository.getShops();
+          final shops = await _shopsRepository.getShops(
+              userId: event.userId, date: event.date);
           emit(ShopsLoadedState(shops));
         } catch (e) {
           emit(ShopsErrorState(e.toString()));

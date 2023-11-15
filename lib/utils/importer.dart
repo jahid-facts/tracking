@@ -1,6 +1,8 @@
 // Dart
 export 'dart:async';
 export 'dart:convert';
+export 'dart:io';
+export 'dart:isolate';
 // export 'dart:html' show window;
 
 // Packages
@@ -11,7 +13,9 @@ export 'package:equatable/equatable.dart';
 export 'package:bloc/bloc.dart';
 export 'package:location/location.dart';
 export 'package:url_launcher/url_launcher.dart';
-export 'package:device_info_plus/device_info_plus.dart';
+export 'package:device_info/device_info.dart';
+// export 'package:device_info_plus/device_info_plus.dart';
+// export 'package:flutter_device_identifier/flutter_device_identifier.dart';
 
 // Repositorys
 // export 'package:tracking/repo/users_repo.dart';

@@ -18,7 +18,9 @@ class LauncherScreen extends StatelessWidget {
         } else if (state is UserLoadedState) {
           BlocProvider.of<UserLocationBloc>(context)
               .add(FetchUserLocation(user: state.user));
-          return DashbordScreen();
+          return DashbordScreen(
+            user: state.user,
+          );
         } else {
           return const LoginScreen(
             hasOccurredError: true,

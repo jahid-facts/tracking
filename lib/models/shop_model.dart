@@ -22,6 +22,7 @@ class Shop extends Equatable {
   });
 
   factory Shop.fromJson(Map<String, dynamic> json) {
+    print(json);
     return Shop(
       id: json['id'],
       name: json['name'],
@@ -29,8 +30,8 @@ class Shop extends Equatable {
       status: json['status'],
       // address: json['address'],
       address: 'Unknown',
-      latitude: json['latitude'],
-      longitude: json['longitude'],
+      latitude: double.tryParse(json['latitude'] ?? '') ?? 0.0,
+      longitude: double.tryParse(json['longitude'] ?? '') ?? 0.0,
       description: json['description'],
     );
   }

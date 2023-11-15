@@ -21,7 +21,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isEmailFocused = false;
   bool isPassFocused = false;
   bool _isObscure = true;
-  bool _isSubmiting = false;
 
   @override
   void initState() {
@@ -67,7 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        // Container is used for Background Image
         child: Container(
           padding: const EdgeInsets.only(left: 30.0, right: 30.0),
           height: height,
@@ -109,16 +107,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               verticalSpace(height: 0.015),
-              // TextField(
-              //   controller: _passController,
-              //   focusNode: _passFocusNode,
-              //   decoration: textFieldDecoration(
-              //     prefixIcon: const Icon(Icons.lock_sharp),
-              //     hint: '******',
-              //     isFocused: isPassFocused,
-              //   ),
-              //   obscureText: _isObscure,
-              // ),
               SizedBox(
                 child: Stack(
                   alignment: AlignmentDirectional.centerEnd,
@@ -138,7 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         setState(() {
                           _isObscure = !_isObscure;
                         });
-                        // Handle suffix icon tap
                       },
                       child: Container(
                         padding: const EdgeInsets.only(right: 12.0),
@@ -150,75 +137,53 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               verticalSpace(),
-              _isSubmiting
-                  ? ElevatedButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => Theme.of(context).colorScheme.primary),
-                        foregroundColor: MaterialStateColor.resolveWith(
-                            (states) =>
-                                Theme.of(context).colorScheme.onPrimary),
-                        // overlayColor: MaterialStateColor.resolveWith((states) => Theme.of(context).colorScheme.primary)
-                        surfaceTintColor: MaterialStateColor.resolveWith(
-                            (states) => Theme.of(context).colorScheme.primary),
-                      ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsetsDirectional.symmetric(vertical: 12.0),
-                        child: Center(child: CircularProgressIndicator()),
-                      ),
-                    )
-                  : ElevatedButton(
-                      onPressed: () {
-                        BlocProvider.of<UserBloc>(context).add(FetchUserEvent(
-                          email: _emailController.text,
-                          password: _passController.text,
-                        ));
-                        setState(() {
-                          _isSubmiting = true;
-                        });
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateColor.resolveWith(
-                            (states) => Theme.of(context).colorScheme.primary),
-                        foregroundColor: MaterialStateColor.resolveWith(
-                            (states) =>
-                                Theme.of(context).colorScheme.onPrimary),
-                        // overlayColor: MaterialStateColor.resolveWith((states) => Theme.of(context).colorScheme.primary)
-                        surfaceTintColor: MaterialStateColor.resolveWith(
-                            (states) => Theme.of(context).colorScheme.primary),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.symmetric(
-                            vertical: 12.0),
-                        child: Center(
-                          child: Text(
-                            'Login',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(color: whitePrimaryColor),
-                          ),
-                        ),
+              if (BlocProvider.of<UserBloc>(context).state is UserLoadingState)
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateColor.resolveWith(
+                        (states) => Theme.of(context).colorScheme.primary),
+                    foregroundColor: MaterialStateColor.resolveWith(
+                        (states) => Theme.of(context).colorScheme.onPrimary),
+                    surfaceTintColor: MaterialStateColor.resolveWith(
+                        (states) => Theme.of(context).colorScheme.primary),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsetsDirectional.symmetric(vertical: 12.0),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                )
+              else
+                ElevatedButton(
+                  onPressed: () {
+                    BlocProvider.of<UserBloc>(context).add(FetchUserEvent(
+                      email: _emailController.text,
+                      password: _passController.text,
+                    ));
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateColor.resolveWith(
+                        (states) => Theme.of(context).colorScheme.primary),
+                    foregroundColor: MaterialStateColor.resolveWith(
+                        (states) => Theme.of(context).colorScheme.onPrimary),
+                    surfaceTintColor: MaterialStateColor.resolveWith(
+                        (states) => Theme.of(context).colorScheme.primary),
+                  ),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.symmetric(vertical: 12.0),
+                    child: Center(
+                      child: Text(
+                        'Login',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: whitePrimaryColor),
                       ),
                     ),
+                  ),
+                ),
               verticalSpace(),
-              // Expanded(
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       const Text("If you forget your password, click "),
-              //       InkWell(
-              //         onTap: () {},
-              //         child: Text(
-              //           "here",
-              //           style: TextStyle(color: Theme.of(context).primaryColor),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),

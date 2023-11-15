@@ -9,7 +9,8 @@ class Cordinate extends Equatable {
     required this.lon,
   });
   String toJson() {
-    return jsonEncode({'lat': lat, 'lon': lon});
+    return jsonEncode(
+        {'latitude': lat.toString(), 'longitude': lon.toString()});
   }
 
   @override

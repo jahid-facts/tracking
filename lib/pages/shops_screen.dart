@@ -9,6 +9,7 @@ class Shopsscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        // appBar: AppBar(),
         drawer: const DrawerWidget(),
         body: Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -74,7 +75,6 @@ class Shopsscreen extends StatelessWidget {
               ),
               verticalSpace(),
               BlocBuilder<ShopsBloc, ShopsState>(
-                bloc: BlocProvider.of<ShopsBloc>(context),
                 buildWhen: (previous, current) => previous != current,
                 builder: (context, state) {
                   if (state is ShopsInitialState) {
@@ -84,14 +84,8 @@ class Shopsscreen extends StatelessWidget {
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: state.shops.length,
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            // Add your onTap action here
-
-                            // Additional logic as needed...
-                          },
-                          child: ShopCard(shop: state.shops[index]),
-                        ),
+                        itemBuilder: (context, index) =>
+                            ShopCard(shop: state.shops[index]),
                       ),
                     );
                     // return Builder(builder: (context)=>Center());

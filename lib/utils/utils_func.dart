@@ -27,10 +27,18 @@ void launchWaze(Cordinate cor) async {
   }
 }
 
-Future<Map> getDeviceInfo() async {
-  final deviceInfoPlugin = DeviceInfoPlugin();
-  final deviceInfo = await deviceInfoPlugin.deviceInfo;
-  return deviceInfo.data;
+Future<String> getDeviceId() async {
+  final DeviceInfoPlugin device = DeviceInfoPlugin();
+  if (Platform.isAndroid) {
+    AndroidDeviceInfo androidInfo = await device.androidInfo;
+    return androidInfo.androidId;
+  } else if (Platform.isIOS) {
+    IosDeviceInfo iosInfo = await device.iosInfo;
+    // return iosInfo.data['identifierForVendor'];
+    return iosInfo.identifierForVendor;
+  }
+
+  return '';
 }
 
 void showToastMessage(BuildContext context, String msg) {

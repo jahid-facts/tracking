@@ -26,4 +26,7 @@ class UserErrorState extends UserState {
   const UserErrorState({
     required this.error,
   });
+
+  @override
+  List<Object> get props => [error];
 }

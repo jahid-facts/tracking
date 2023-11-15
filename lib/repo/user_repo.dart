@@ -13,19 +13,19 @@ class UserRepository {
     Map data = {
       'email': email,
       'password': password,
-      // 'deviceID': deviceID,
+      'deviceId': deviceID,
     };
-    print(deviceID);
     Response response =
         await post(url, headers: headers, body: jsonEncode(data));
 
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       var userJson = jsonResponse['user'];
+      if (jsonResponse['validation'] != 'Failed') {
+        return User.fromJson(userJson);
+      }
       // Assuming you have a User class with a factory constructor 'fromJson'
-      return User.fromJson(userJson);
-    } else {
-      throw Exception(response.reasonPhrase);
     }
+    throw Exception(response.reasonPhrase);
   }
 }

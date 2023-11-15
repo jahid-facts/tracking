@@ -10,6 +10,6 @@ Map<String, WidgetBuilder> allRouts = {
   launcherRoute: (context) => const LauncherScreen(),
   homeRoute: (context) => const HomeScreen(),
   loginRoute: (context) => const LoginScreen(),
-  dashbordScreenRoute: (context) => DashbordScreen(),
+  // dashbordScreenRoute: (context) => DashbordScreen(),
   // shopsScreenRoute: (context) => const Shopsscreen(),
 };
